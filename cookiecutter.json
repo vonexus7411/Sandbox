@@ -1,0 +1,14 @@
+{
+    "use_hadoop": {
+      "type": "enum",
+      "name": "Use Hadoop?",
+      "default": "no",
+      "enum": ["yes", "no"]
+    },
+    "use_spark": {
+        "type": "enum",
+        "name": "Use PySpark?",
+        "default": "no",
+        "enum": ["yes", "no"]
+      }
+}
