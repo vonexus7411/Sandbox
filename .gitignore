@@ -37,6 +37,7 @@ bin/
 *.cache/
 *.swp
 *~
+.DS_Store
 
 # PySpark-related files and directories
 *.log
