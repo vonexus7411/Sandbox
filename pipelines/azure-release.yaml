@@ -1,0 +1,24 @@
+trigger:
+  - main
+
+stages:
+- stage: Deploy
+  jobs:
+  - job: DeployToAKS
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.x'
+        addToPath: true
+
+    - script: az login --service-principal -u $(SP_APP_ID) -p $(SP_PASSWORD) --tenant $(TENANT_ID)
+      displayName: 'Azure Login'
+
+    - script: az aks get-credentials --resource-group $(RESOURCE_GROUP) --name $(CLUSTER_NAME)
+      displayName: 'Get AKS Credentials'
+
+    - script: |
+        kubectl apply -f path/to/deployment.yaml
+      displayName: 'Deploy Containerized Application to AKS'
